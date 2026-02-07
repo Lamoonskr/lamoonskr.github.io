@@ -506,6 +506,116 @@
             line-height: 1.8;
         }
 
+        /* --- 常見問題區 --- */
+        .faq-section {
+            padding: 80px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .faq-item {
+            background: rgba(20, 20, 35, 0.4); /* 深色半透明背景 */
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        /* 懸停效果 */
+        .faq-item:hover {
+            border-color: rgba(0, 240, 255, 0.3);
+            background: rgba(20, 20, 35, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* 展開狀態 (Active) */
+        .faq-item.active {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+            background: rgba(20, 20, 35, 0.8);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: white;
+            transition: 0.3s;
+            user-select: none; /* 防止連點選取文字 */
+        }
+
+        /* 問題左側裝飾條 (預設隱藏) */
+        .faq-question::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 4px;
+            background: var(--primary);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .faq-item.active .faq-question::before {
+            opacity: 1;
+        }
+
+        .faq-item.active .faq-question {
+            color: var(--primary);
+        }
+
+        /* 箭頭樣式優化 */
+        .arrow-icon {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .faq-item:hover .arrow-icon {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .faq-item.active .arrow-icon {
+            background: var(--primary);
+            color: black;
+            transform: rotate(180deg);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .faq-answer p {
+            padding: 30px;
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+
         /* --- 頁尾 --- */
         footer {
             text-align: center;
@@ -556,15 +666,15 @@
         @media (max-width: 768px) {
             nav { padding: 15px 20px; }
             .nav-links { display: none; }
-            
             h1 { font-size: 2.5rem; }
             .hero-content { width: 100%; }
-            
             .btn { width: 100%; justify-content: center; }
-            
             .info-card { gap: 30px; width: 100%; padding: 25px; flex-direction: column; }
             .info-item { width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
             .info-item:last-child { border-bottom: none; padding-bottom: 0; }
+            .rules-container { padding: 30px 20px; }
+            .faq-question { padding: 20px; font-size: 1rem; }
+            .faq-answer p { padding: 20px; }
         }
     </style>
 </head>
@@ -769,7 +879,9 @@
             <div class="faq-item">
                 <div class="faq-question">
                     如何加入《星艦啟航》伺服器？
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="arrow-icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                 </div>
                 <div class="faq-answer">
                     <p>只需在 Minecraft 多人遊戲中輸入伺服器 IP：mc.start-ship.com，即可直接加入。支援 Java 版 1.20.8，建議先加入我們的 Discord 社群了解最新資訊。</p>
@@ -779,7 +891,9 @@
             <div class="faq-item">
                 <div class="faq-question">
                     伺服器有哪些主要玩法？
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="arrow-icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                 </div>
                 <div class="faq-answer">
                     <p>我們提供完整的原味生存體驗，同時整合 Slimefun 科技模組、RPG 職業系統、紅石自動化、副本挑戰、Boss 戰鬥、經濟系統、玩家市集等多元玩法。你可以專注建築、科技發展、戰鬥冒險，或是成為紅石工程師。</p>
@@ -789,7 +903,9 @@
             <div class="faq-item">
                 <div class="faq-question">
                     Slimefun 科技樹是什麼？
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="arrow-icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                 </div>
                 <div class="faq-answer">
                     <p>Slimefun 是一個強大的科技模組，讓你從基礎工具逐步發展到星際設備。包含自動化機器、能源系統、傳送裝置、高級武器裝備等上百種科技物品，完全不需要安裝任何客戶端模組。</p>
@@ -799,7 +915,9 @@
             <div class="faq-item">
                 <div class="faq-question">
                     新手該如何開始？
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="arrow-icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                 </div>
                 <div class="faq-answer">
                     <p>建議先完成新手任務，獲得基礎資源和裝備。接著選擇你的 RPG 職業，開始探索世界。可以先專注於原味生存，熟悉後再逐步接觸科技系統和 RPG 內容。我們的 Discord 社群有詳細的新手指南。</p>
@@ -809,7 +927,9 @@
             <div class="faq-item">
                 <div class="faq-question">
                     伺服器穩定嗎？會不會卡頓？
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="arrow-icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                 </div>
                 <div class="faq-answer">
                     <p>我們使用高效能專用伺服器，24/7 全天候運行，配備自製優化插件和跨服資料同步系統。定期備份確保資料安全，平均 TPS 維持在 19.5 以上，提供流暢的遊戲體驗。</p>
@@ -819,7 +939,9 @@
             <div class="faq-item">
                 <div class="faq-question">
                     可以和朋友一起玩嗎？
-                    <i class="fa-solid fa-chevron-down"></i>
+                    <div class="arrow-icon">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
                 </div>
                 <div class="faq-answer">
                     <p>當然可以！伺服器支援組隊系統、公會系統，你可以和朋友一起建立基地、挑戰副本、參與活動。我們也有玩家市集和交易系統，鼓勵玩家之間的互動與合作。</p>
@@ -929,6 +1051,7 @@
     </script>
 </body>
 </html>
+
 
 
 
