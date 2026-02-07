@@ -1048,9 +1048,37 @@
                 toast.className = toast.className.replace("show", ""); 
             }, 3000);
         }
+        
+        // -----------------------
+        // 3. FAQ 手風琴功能
+        // -----------------------
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                faqItems.forEach(i => {
+                    if (i !== item) {
+                        i.classList.remove('active');
+                        i.querySelector('.faq-answer').style.maxHeight = null;
+                    }
+                });
+
+                // 切換當前項目
+                item.classList.toggle('active');
+                
+                const answer = item.querySelector('.faq-answer');
+                if (item.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                } else {
+                    answer.style.maxHeight = null;
+                }
+            });
+        });
     </script>
 </body>
 </html>
+
 
 
 
