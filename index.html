@@ -84,10 +84,14 @@
             color: white;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         
-        .logo i { color: var(--primary); }
+        .logo img {
+            max-height: 45px;
+            width: auto;
+            object-fit: contain;
+        }
 
         /* 中間的導航連結 */
         .nav-links {
@@ -477,7 +481,7 @@
     <!-- 導航列 -->
     <nav>
         <div class="logo">
-            <i class="fa-solid fa-rocket"></i>
+            <img src="logo/logo.png" alt="Starship Voyage Logo">
             STARSHIP
         </div>
         
@@ -690,7 +694,5 @@
             }, 3000);
         }
     </script>
-
 </body>
-
 </html>
