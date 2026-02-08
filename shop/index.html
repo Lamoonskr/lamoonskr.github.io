@@ -1,246 +1,282 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡管理員 | 星艦啟航</title>
 
-<title>聯絡管理員 | 星艦啟航</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #00f0ff;
+            --primary-glow: rgba(0, 240, 255, 0.4);
+            --bg-dark: #050510;
+            --text-main: #fff;
+            --text-muted: #a0a0b0;
+            --glass-bg: rgba(20, 20, 35, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-orange: #ff6600;
+        }
 
-<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
 
-:root {
-    --primary: #00f0ff;
-    --primary-glow: rgba(0,240,255,.4);
-    --bg-dark: #050510;
-    --text-main: #fff;
-    --text-muted: #a0a0b0;
-    --glass-bg: rgba(20,20,35,.6);
-    --glass-border: rgba(255,255,255,.1);
-}
+        body {
+            background: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Outfit',sans-serif;
-}
+        .background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background: 
+                linear-gradient(to bottom, rgba(5, 5, 16, 0.5), rgba(5, 5, 16, 1)),
+                url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2072&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
 
-body{
-    background:var(--bg-dark);
-    color:var(--text-main);
-}
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 16, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+        }
 
-/* 背景 */
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-1;
-    background:
-    linear-gradient(to bottom,rgba(5,5,16,.3),rgba(5,5,16,1)),
-    url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2072&auto=format&fit=crop');
-    background-size:cover;
-}
+        .logo {
+            font-weight: 800;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
 
-/* Navbar */
-nav{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 5%;
-    position:fixed;
-    width:100%;
-    top:0;
-    background:rgba(5,5,16,.8);
-    backdrop-filter:blur(12px);
-    border-bottom:1px solid var(--glass-border);
-}
+        .logo i { color: var(--primary); margin-right: 8px; }
 
-.logo{
-    font-weight:800;
-    font-size:1.4rem;
-}
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
 
-.logo i{color:var(--primary)}
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+            font-weight: 500;
+        }
 
-.nav-links{
-    display:flex;
-    gap:25px;
-    list-style:none;
-}
+        .nav-links a:hover { color: var(--primary); }
 
-.nav-links a{
-    color:var(--text-muted);
-    text-decoration:none;
-}
+        .main {
+            max-width: 800px;
+            margin: 140px auto 80px;
+            padding: 0 20px;
+        }
 
-.nav-links a:hover{
-    color:#fff;
-}
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
 
-/* 主體 */
-.main{
-    max-width:900px;
-    margin:140px auto 80px;
-    padding:20px;
-}
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
 
-/* 區塊 */
-.card{
-    background:var(--glass-bg);
-    border:1px solid var(--glass-border);
-    border-radius:16px;
-    padding:30px;
-    margin-bottom:30px;
-    box-shadow:0 0 30px rgba(0,0,0,.3);
-}
+        .card:hover { transform: translateY(-5px); }
 
-h1{
-    text-align:center;
-    font-size:2.8rem;
-    margin-bottom:30px;
-}
+        h2 {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            font-size: 1.5rem;
+        }
 
-h2{
-    border-left:4px solid var(--primary);
-    padding-left:10px;
-    margin-bottom:20px;
-}
+        /* 8591 區塊優化 */
+        .shop { text-align: center; }
+        
+        .shop-logo-container {
+            margin: 20px 0;
+            display: inline-block;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            transition: 0.3s;
+        }
 
-/* 8591 */
-.shop{
-    text-align:center;
-}
+        .shop-logo-container:hover {
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
+        }
 
-.shop img{
-    max-width:260px;
-    transition:.3s;
-}
+        .shop img {
+            max-width: 220px;
+            height: auto;
+            display: block;
+        }
 
-.shop img:hover{
-    transform:scale(1.05);
-}
+        /* 表單樣式 */
+        .form-group { margin-bottom: 20px; }
+        
+        label {
+            display: block;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
 
-/* 表單 */
-input,textarea{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:6px;
-    margin-top:8px;
-    margin-bottom:20px;
-    background:#020617;
-    color:white;
-}
+        input, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            outline: none;
+            transition: 0.3s;
+        }
 
-button{
-    width:100%;
-    padding:14px;
-    background:var(--primary);
-    border:none;
-    font-weight:700;
-    cursor:pointer;
-}
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
 
-button:hover{
-    box-shadow:0 0 20px var(--primary-glow);
-}
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-footer{
-    text-align:center;
-    padding:30px;
-    opacity:.6;
-}
+        button:hover {
+            box-shadow: 0 0 25px var(--primary-glow);
+            transform: scale(1.02);
+        }
 
-@media(max-width:768px){
-    .nav-links{display:none;}
-}
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
 
-</style>
+        @media(max-width: 768px) {
+            .nav-links { display: none; }
+            h1 { font-size: 2.2rem; }
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="background"></div>
 
-<!-- Navbar -->
 <nav>
     <div class="logo">
         <i class="fa-solid fa-rocket"></i> STARSHIP
     </div>
-
     <ul class="nav-links">
-        <li><a href="/">首頁</a></li>
-        <li><a href="/shop/">商城</a></li>
-        <li><a href="/wiki/">Wiki</a></li>
-        <li><a href="/contact/">聯絡</a></li>
+        <li><a href="./">首頁</a></li>
+        <li><a href="./shop/">商城</a></li>
+        <li><a href="./wiki/">Wiki</a></li>
+        <li><a href="./contact/">聯絡</a></li>
     </ul>
 </nav>
 
-<!-- 主內容 -->
 <div class="main">
+    <h1>📩 聯絡管理員</h1>
 
-<h1>📩 聯絡管理員</h1>
+    <div class="card">
+        <h2>管理員資訊</h2>
+        <p style="margin-bottom: 15px; color: var(--text-muted);">如有問題、BUG、申訴、儲值問題，請透過以下方式聯絡：</p>
+        <p>💬 Discord：<b style="color: var(--primary);">StartShip#0001</b></p>
+        <p>📧 Email：<b style="color: var(--primary);">admin@startship.com</b></p>
+        <p>⏰ 回覆時間：10:00 ~ 22:00</p>
+    </div>
 
-<!-- 聯絡方式 -->
-<div class="card">
+    <div class="card shop">
+        <h2>贊助平台</h2>
+        <p>我們推薦使用 8591 進行安全交易：</p>
+        
+        <a href="https://www.8591.com.tw/" target="_blank" class="shop-logo-container">
+            <img src="./8591/8591.png" alt="8591 實物交易">
+        </a>
+        
+        <p style="font-size: 0.85rem; color: var(--text-muted);">點擊圖片前往官方賣場</p>
+    </div>
 
-<h2>管理員資訊</h2>
-
-<p>如有問題、BUG、申訴、儲值問題，請透過以下方式聯絡：</p>
-
-<p>💬 Discord：<b>StartShip#0001</b></p>
-<p>📧 Email：<b>admin@startship.com</b></p>
-<p>⏰ 回覆時間：10:00 ~ 22:00</p>
-
-</div>
-
-<!-- 8591 -->
-<div class="card shop">
-
-<h2 class="shop-title">
-    <img src="/assets/img/8591.png" alt="8591 實物交易" class="shop-logo">
-    8591 贊助平台
-</h2>
-
-<p>點擊下方圖片前往贊助：</p>
-
-<a href="https://www.8591.com.tw/" target="_blank">
-<img src="https://www.8591.com.tw/v3/images/index/8591logo.png" alt="8591">
-</a>
-
-</div>
-
-<!-- 表單 -->
-<div class="card">
-
-<h2>問題回報</h2>
-
-<form>
-
-<label>遊戲ID</label>
-<input type="text" placeholder="你的遊戲名稱">
-
-<label>聯絡方式</label>
-<input type="text" placeholder="Discord / Email">
-
-<label>問題內容</label>
-<textarea rows="5" placeholder="請詳細描述"></textarea>
-
-<button type="submit">送出訊息</button>
-
-</form>
-
-</div>
-
+    <div class="card">
+        <h2>問題回報</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <label>遊戲 ID</label>
+                <input type="text" placeholder="輸入您的角色名稱" required>
+            </div>
+            <div class="form-group">
+                <label>聯絡方式</label>
+                <input type="text" placeholder="Discord 或 Email" required>
+            </div>
+            <div class="form-group">
+                <label>問題詳細內容</label>
+                <textarea rows="5" placeholder="請盡可能詳細描述您遇到的問題..." required></textarea>
+            </div>
+            <button type="submit">送出訊息</button>
+        </form>
+    </div>
 </div>
 
 <footer>
-© 2026 星艦啟航 Starship Voyage
+    © 2026 星艦啟航 Starship Voyage
 </footer>
+
+<script>
+    // 簡單的表單送出效果
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button');
+        btn.innerText = '傳送中...';
+        btn.style.opacity = '0.7';
+        
+        setTimeout(() => {
+            alert('感謝您的回報！管理員將會儘速處理。');
+            btn.innerText = '送出訊息';
+            btn.style.opacity = '1';
+            this.reset();
+        }, 1000);
+    });
+</script>
 
 </body>
 </html>
-
