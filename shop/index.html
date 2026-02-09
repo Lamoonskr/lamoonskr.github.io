@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聯絡管理員 | 星艦啟航</title>
-
+    <link rel="icon" href="./logo/logo.png" type="image/png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -59,27 +61,48 @@
         }
 
         .logo {
+            font-size: 1.5rem;
             font-weight: 800;
-            font-size: 1.4rem;
             letter-spacing: 1px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            max-height: 45px;
+            width: auto;
+            object-fit: contain;
         }
 
         .logo i { color: var(--primary); margin-right: 8px; }
 
         .nav-links {
             display: flex;
-            gap: 25px;
+            gap: 30px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text-muted);
             text-decoration: none;
-            transition: 0.3s;
             font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            position: relative;
         }
 
-        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover { color: white; }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--primary);
+            transition: 0.3s;
+        }
+        .nav-links a:hover::after { width: 100%; }
 
         .main {
             max-width: 800px;
@@ -188,9 +211,12 @@
 
         footer {
             text-align: center;
-            padding: 40px;
-            color: var(--text-muted);
+            padding: 50px 20px;
+            color: #666;
             font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 50px;
+            background: rgba(5, 5, 16, 0.9);
         }
 
         @media(max-width: 768px) {
@@ -209,10 +235,7 @@
     </div>
     <ul class="nav-links">
         <li><a href="#" onclick="javascript:history.back(-1);">首頁</a></li>
-        <li><a href="#features" onclick="javascript:history.back(-1);">伺服器特色</a></li>
-        <li><a href="./#rules" onclick="javascript:history.back(-1);">玩家公約</a></li>
         <li><a href="#">贊助商城</a></li>
-        <li><a href="./#faq" onclick="javascript:history.back(-1);">常見問題</a></li>
     </ul>
 </nav>
 
@@ -259,7 +282,8 @@
 </div>
 
 <footer>
-    © 2026 星艦啟航 Starship Voyage
+        <p>&copy; 2026 星艦啟航伺服器 | Startship Voyage</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; opacity: 0.6;">Minecraft Server IP: mc.start-ship.com</p>
 </footer>
 
 <script>
@@ -281,6 +305,7 @@
 
 </body>
 </html>
+
 
 
 
