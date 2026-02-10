@@ -4,226 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聯絡管理員 | 星艦啟航</title>
-    <link rel="icon" href="./logo/logo.png" type="image/png">
+    <link rel="icon" href="../logo/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <style>
-        :root {
-            --primary: #00f0ff;
-            --primary-glow: rgba(0, 240, 255, 0.4);
-            --bg-dark: #050510;
-            --text-main: #fff;
-            --text-muted: #a0a0b0;
-            --glass-bg: rgba(20, 20, 35, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent-orange: #ff6600;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Outfit', sans-serif;
-        }
-
-        body {
-            background: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-        }
-
-        .background {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background: 
-                linear-gradient(to bottom, rgba(5, 5, 16, 0.5), rgba(5, 5, 16, 1)),
-                url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=2072&auto=format&fit=crop');
-            background-size: cover;
-            background-position: center;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(5, 5, 16, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--glass-border);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: white;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .logo img {
-            max-height: 45px;
-            width: auto;
-            object-fit: contain;
-        }
-
-        .logo i { color: var(--primary); margin-right: 8px; }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: 0.3s;
-            position: relative;
-        }
-
-        .nav-links a:hover { color: white; }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--primary);
-            transition: 0.3s;
-        }
-        .nav-links a:hover::after { width: 100%; }
-
-        .main {
-            max-width: 800px;
-            margin: 140px auto 80px;
-            padding: 0 20px;
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 40px;
-            font-weight: 900;
-            letter-spacing: -1px;
-            background: linear-gradient(to bottom, #fff, #888);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 35px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover { transform: translateY(-5px); }
-
-        h2 {
-            border-left: 4px solid var(--primary);
-            padding-left: 15px;
-            margin-bottom: 25px;
-            font-size: 1.5rem;
-        }
-
-        /* 8591 區塊優化 */
-        .shop { text-align: center; }
-        
-        .shop-logo-container {
-            margin: 20px 0;
-            display: inline-block;
-            padding: 15px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            transition: 0.3s;
-        }
-
-        .shop-logo-container:hover {
-            background: rgba(255,255,255,0.1);
-            box-shadow: 0 0 20px rgba(255, 102, 0, 0.2);
-        }
-
-        .shop img {
-            max-width: 220px;
-            height: auto;
-            display: block;
-        }
-
-        /* 表單樣式 */
-        .form-group { margin-bottom: 20px; }
-        
-        label {
-            display: block;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            background: rgba(0, 0, 0, 0.3);
-            color: white;
-            outline: none;
-            transition: 0.3s;
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 10px var(--primary-glow);
-        }
-
-        button {
-            width: 100%;
-            padding: 16px;
-            background: var(--primary);
-            color: #000;
-            border: none;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        button:hover {
-            box-shadow: 0 0 25px var(--primary-glow);
-            transform: scale(1.02);
-        }
-
-        footer {
-            text-align: center;
-            padding: 50px 20px;
-            color: #666;
-            font-size: 0.9rem;
-            border-top: 1px solid var(--glass-border);
-            margin-top: 50px;
-            background: rgba(5, 5, 16, 0.9);
-        }
-
-        @media(max-width: 768px) {
-            .nav-links { display: none; }
-            h1 { font-size: 2.2rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="../style.css">
+    
 </head>
 <body>
 
@@ -231,10 +18,11 @@
 
 <nav>
     <div class="logo">
-        <i class="fa-solid fa-rocket"></i> STARSHIP
+            <img src="../logo/logo.png" alt="Starship Voyage Logo">
+            STARSHIP
     </div>
     <ul class="nav-links">
-        <li><a href="#" onclick="javascript:history.back(-1);">首頁</a></li>
+        <li><a href="../#">首頁</a></li>
         <li><a href="#">贊助商城</a></li>
     </ul>
 </nav>
@@ -251,11 +39,11 @@
     </div>
 
     <div class="card shop">
-        <h2>贊助平台</h2>
-        <p>我們推薦使用 8591 進行安全交易：</p>
+        <h2 style="text-align: left;">贊助平台</h2>
+        <p>推薦使用 8591 進行安全交易：</p>
         
         <a href="https://www.8591.com.tw/v3/mall/list/seller-2753321" target="_blank" class="shop-logo-container">
-            <img src="8591.png" alt="8591交易">
+            <img src="./8591.png" alt="8591交易">
         </a>
         
         <p style="font-size: 0.85rem; color: var(--text-muted);">點擊圖片前往官方賣場</p>
